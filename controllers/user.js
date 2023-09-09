@@ -17,7 +17,7 @@ export const getUserBYId=async(req,res)=>{
 
 //loging 
 
-export const login=async(req,res)=>{
+export const login=async(req,res,next)=>{
 
     const {email,password}=req.body;
 
@@ -38,7 +38,7 @@ export const login=async(req,res)=>{
 //register
 
 
-export const newUser= async (req, res) => {
+export const newUser= async (req, res,next) => {
     const {name,email,password}=req.body;
 
     let user=await User.findOne({email});

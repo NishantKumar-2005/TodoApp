@@ -1,5 +1,4 @@
 import express from "express";
-import mongoose from "mongoose";
 import userRouter from "./routes/user.js"
 import taskRouter from "./routes/task.js"
 import { config } from "dotenv";
@@ -19,16 +18,18 @@ config({
 
 //middelware
 
+app.use(cors({
+    origin: [process.env.ForntEnd_URL],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+}));
+
 app.use(express.json()); // Body parser middleware
 app.use(cookieParser()); // Cookie parser middleware
 app.use('/users', userRouter); // Your route handlers
-app.use('/task', taskRouter); 
+app.use('/task', taskRouter);
 app.use(error);
-app.use(cors({
-    origin:[process.env.ForntEnd_URL],
-    methods:["GET","POST","PUT","DELETE"],
-    credentials:true,
-}))
+
 
 
 app.get("/", (req, res) => {
