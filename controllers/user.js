@@ -57,5 +57,5 @@ export const newUser= async (req, res,next) => {
 
 //logout
 export const logout=(req, res) => {
-    res.cookie("token","",{expires:new Date(Date.now()),sameSite:process.env.Node_ENV==="Development"?"lax":"none",Secure:process.env.Node_ENV==="Development"?false:true}).json({success:true});
+    res.cookie("token","",{expires:new Date(Date.now()),sameSite:process.env.Node_ENV==="Development"?"lax":"none",secure: process.env.NODE_ENV === "production"?true:false}).json({success:true});
 };
